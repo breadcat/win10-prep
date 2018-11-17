@@ -12,3 +12,7 @@ w32tm /resync /nowait
 rem don't require signin after wakeup
 powercfg /SETDCVALUEINDEX SCHEME_CURRENT SUB_NONE CONSOLELOCK 0
 powercfg /SETACVALUEINDEX SCHEME_CURRENT SUB_NONE CONSOLELOCK 0
+rem batch file shortcuts
+echo robocopy . . /s /move > %windir%\system32\empties.bat
+echo dir /b > %windir%\system32\ls.bat
+echo exit > %windir%\system32\x.bat
