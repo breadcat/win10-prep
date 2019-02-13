@@ -1,6 +1,6 @@
 rem install applications
 msiexec /i https://just-install.github.io/stable/just-install.msi
-just-install 7zip autohotkey autoruns firefox flux geforce-experience github imageglass mumble notepad2-mod parsec procmon putty rclone retroarch rufus steam sumatrapdf syncthing
+just-install 7zip autohotkey autoruns firefox github irfanview mumble notepad2-mod parsec putty rclone retroarch rufus steam sumatrapdf syncthing winscp
 rem random 7z binary to extract packages
 cd %temp%
 @powershell Invoke-WebRequest http://www.7-zip.org/a/7z1701.msi -OutFile 7z1701.msi
@@ -14,6 +14,11 @@ dism /Online /enable-feature /FeatureName:"DirectPlay" /All /NoRestart
 rem 7zip associations and use windows icon
 reg add "HKCU\SOFTWARE\Classes\Applications\7zFM.exe\shell\open\command" /ve /t REG_SZ /d "\"%programfiles%\7-Zip\7zFM.exe\" \"%%1\"" /f
 reg add "HKCR\7z_auto_file\DefaultIcon" /ve /t REG_EXPAND_SZ /d "%%SystemRoot%%\system32\zipfldr.dll" /f
+rem add irfanview shortcode
+reg add "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths\irfanview.exe" /v "Path" /t REG_SZ /d "%programfiles%\IrfanView\\" /f
+reg add "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths\irfanview.exe" /ve /t REG_SZ /d "%programfiles%\IrfanView\i_view64.exe" /f
+rem allow irfanview to edit ini file
+icacls "%programfiles%\IrfanView" /grant Everyone:(OI)(CI)F
 rem add mumble short code
 reg add "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths\mumble.exe" /v "Path" /t REG_SZ /d "%ProgramFiles(x86)%\Mumble\\" /f
 reg add "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths\mumble.exe" /ve /t REG_SZ /d "%ProgramFiles(x86)%\Mumble\mumble.exe" /f
