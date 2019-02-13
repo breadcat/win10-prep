@@ -66,8 +66,9 @@ rem install webp codec
 ren %temp%\.rsrc\0\MSIFILE\1 1.msi && msiexec /i %temp%\.rsrc\0\MSIFILE\1.msi /quiet /qn /norestart
 ren %temp%\.rsrc\0\MSIFILE\10 10.msi && msiexec /i %temp%\.rsrc\0\MSIFILE\10.msi /quiet /qn /norestart
 rd /s /q %temp%\.rsrc
-rem mpv download, unpack and
-mkdir "%ProgramFiles%\mpv"
-@powershell Invoke-WebRequest https://mpv.srsfckn.biz/mpv-x86_64-20171225.7z -OutFile mpv.7z
+rem mpv download and unpack
+mkdir "%programfiles%\mpv"
+@powershell Invoke-WebRequest https://mpv.srsfckn.biz/mpv-x86_64-20181002.7z -OutFile mpv.7z
 @powershell Invoke-WebRequest https://raw.githubusercontent.com/rossy/mpv-install/master/mpv-document.ico -OutFile mpv-document.ico
-move mpv-document.ico %ProgramFiles%\mpv\mpv-document.ico"%programfiles%\7-Zip\7z.exe" x %temp%\mpv.7z -o"%programfiles%\mpv"
+"%programfiles%\7-Zip\7z.exe" x %temp%\mpv.7z -o"%programfiles%\mpv"
+move mpv-document.ico "%programfiles%\mpv\mpv-document.ico"
