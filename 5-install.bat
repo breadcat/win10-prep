@@ -1,5 +1,5 @@
 rem install applications
-msiexec /i http://stable.just-install.it
+msiexec /i https://just-install.github.io/stable/just-install.msi
 just-install 7zip autohotkey autoruns firefox flux geforce-experience github imageglass mumble notepad2-mod parsec procmon putty rclone retroarch rufus steam sumatrapdf syncthing
 rem random 7z binary to extract packages
 cd %temp%
