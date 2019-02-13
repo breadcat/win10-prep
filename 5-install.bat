@@ -14,9 +14,6 @@ dism /Online /enable-feature /FeatureName:"DirectPlay" /All /NoRestart
 rem 7zip associations and use windows icon
 reg add "HKCU\SOFTWARE\Classes\Applications\7zFM.exe\shell\open\command" /ve /t REG_SZ /d "\"%programfiles%\7-Zip\7zFM.exe\" \"%%1\"" /f
 reg add "HKCR\7z_auto_file\DefaultIcon" /ve /t REG_EXPAND_SZ /d "%%SystemRoot%%\system32\zipfldr.dll" /f
-rem flux location
-reg add "HKCU\SOFTWARE\Michael Herf\flux\Preferences" /v "Latitude" /t REG_DWORD /d "5369" /f
-reg add "HKCU\SOFTWARE\Michael Herf\flux\Preferences" /v "Longitude" /t REG_DWORD /d "4294967118" /f
 rem add mumble short code
 reg add "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths\mumble.exe" /v "Path" /t REG_SZ /d "%ProgramFiles(x86)%\Mumble\\" /f
 reg add "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths\mumble.exe" /ve /t REG_SZ /d "%ProgramFiles(x86)%\Mumble\mumble.exe" /f
