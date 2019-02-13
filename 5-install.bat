@@ -3,8 +3,6 @@ msiexec /i https://just-install.github.io/stable/just-install.msi
 just-install 7zip autohotkey autoruns firefox github irfanview mumble notepad2-mod parsec putty rclone retroarch rufus steam sumatrapdf syncthing winscp
 rem random 7z binary to extract packages
 cd %temp%
-@powershell Invoke-WebRequest http://www.7-zip.org/a/7z1701.msi -OutFile 7z1701.msi
-msiexec /a %temp%\7z1701.msi /qb TARGETDIR=%temp%\7z1701\
 rem add ahk-assistant if it exists
 if exist %userprofile%\Vault\src\ahka\ahk-assistant.ahk reg add "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Run" /v "AHK Assistant" /t REG_SZ /d "%userprofile%\Vault\src\ahka\ahk-assistant.ahk" /f
 rem install .net3, generally useful
@@ -64,15 +62,12 @@ rem add syncthing firewall rule
 netsh advfirewall firewall add rule name="Syncthing" dir=in action=allow program="%programfiles%\Syncthing\syncthing.exe" enable=yes
 rem install webp codec
 @powershell Invoke-WebRequest https://storage.googleapis.com/downloads.webmproject.org/releases/webp/WebpCodecSetup.exe -OutFile WebpCodecSetup.exe
-%temp%\7z1701\Files\7-Zip\7z.exe x %temp%\WebpCodecSetup.exe
-ren %temp%\.rsrc\0\MSIFILE\1 1.msi
-ren %temp%\.rsrc\0\MSIFILE\10 10.msi
-msiexec /i %temp%\.rsrc\0\MSIFILE\1.msi /quiet /qn /norestart
-msiexec /i %temp%\.rsrc\0\MSIFILE\10.msi /quiet /qn /norestart
+"%programfiles%\7-Zip\7z.exe" x %temp%\WebpCodecSetup.exe
+ren %temp%\.rsrc\0\MSIFILE\1 1.msi && msiexec /i %temp%\.rsrc\0\MSIFILE\1.msi /quiet /qn /norestart
+ren %temp%\.rsrc\0\MSIFILE\10 10.msi && msiexec /i %temp%\.rsrc\0\MSIFILE\10.msi /quiet /qn /norestart
 rd /s /q %temp%\.rsrc
 rem mpv download, unpack and
 mkdir "%ProgramFiles%\mpv"
 @powershell Invoke-WebRequest https://mpv.srsfckn.biz/mpv-x86_64-20171225.7z -OutFile mpv.7z
 @powershell Invoke-WebRequest https://raw.githubusercontent.com/rossy/mpv-install/master/mpv-document.ico -OutFile mpv-document.ico
-%temp%\7z1701\Files\7-Zip\7z.exe x %temp%\mpv.7z -o"%ProgramFiles%\mpv"
-move mpv-document.ico %ProgramFiles%\mpv\mpv-document.ico
+move mpv-document.ico %ProgramFiles%\mpv\mpv-document.ico"%programfiles%\7-Zip\7z.exe" x %temp%\mpv.7z -o"%programfiles%\mpv"
