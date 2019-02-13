@@ -12,14 +12,14 @@ DISM /Online /Enable-Feature /FeatureName:NetFx3 /All /NoRestart
 rem install directplay, useful for old GTA games
 dism /Online /enable-feature /FeatureName:"DirectPlay" /All /NoRestart
 rem 7zip associations and use windows icon
-reg add "HKCU\SOFTWARE\Classes\Applications\7zFM.exe\shell\open\command" /ve /t REG_SZ /d "\"C:\Program Files\7-Zip\7zFM.exe\" \"%%1\"" /f
+reg add "HKCU\SOFTWARE\Classes\Applications\7zFM.exe\shell\open\command" /ve /t REG_SZ /d "\"%programfiles%\7-Zip\7zFM.exe\" \"%%1\"" /f
 reg add "HKCR\7z_auto_file\DefaultIcon" /ve /t REG_EXPAND_SZ /d "%%SystemRoot%%\system32\zipfldr.dll" /f
 rem flux location
 reg add "HKCU\SOFTWARE\Michael Herf\flux\Preferences" /v "Latitude" /t REG_DWORD /d "5369" /f
 reg add "HKCU\SOFTWARE\Michael Herf\flux\Preferences" /v "Longitude" /t REG_DWORD /d "4294967118" /f
 rem add mumble short code
-reg add "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths\mumble.exe" /v "Path" /t REG_SZ /d "C:\Program Files (x86)\Mumble\\" /f
-reg add "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths\mumble.exe" /ve /t REG_SZ /d "C:\Program Files (x86)\Mumble\mumble.exe" /f
+reg add "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths\mumble.exe" /v "Path" /t REG_SZ /d "%ProgramFiles(x86)%\Mumble\\" /f
+reg add "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths\mumble.exe" /ve /t REG_SZ /d "%ProgramFiles(x86)%\Mumble\mumble.exe" /f
 rem putty colour scheme
 reg add "HKCU\Software\SimonTatham\PuTTY\Sessions\Default%%20Settings" /v "Colour0" /t REG_SZ /d "197,200,198" /f
 reg add "HKCU\Software\SimonTatham\PuTTY\Sessions\Default%%20Settings" /v "Colour1" /t REG_SZ /d "197,200,198" /f
@@ -46,8 +46,8 @@ reg add "HKCU\Software\SimonTatham\PuTTY\Sessions\Default%%20Settings" /v "Colou
 rem agree to procmon eula
 reg add "HKCU\SOFTWARE\Sysinternals\Process Monitor" /v "EulaAccepted" /t REG_DWORD /d "1" /f
 rem add steam shortcode
-reg add "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths\steam.exe" /v "Path" /t REG_SZ /d "C:\Program Files (x86)\Steam\\" /f
-reg add "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths\steam.exe" /ve /t REG_SZ /d "C:\Program Files (x86)\Steam\Steam.exe" /f
+reg add "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths\steam.exe" /v "Path" /t REG_SZ /d "%ProgramFiles(x86)%\Steam\\" /f
+reg add "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths\steam.exe" /ve /t REG_SZ /d "%ProgramFiles(x86)%\Steam\Steam.exe" /f
 rem move syncthing binaries up a directory
 dir /b "%programfiles%\Syncthing" > "syncthing-ver.tmp"
 set /p syncthing-ver=<"syncthing-ver.tmp"
