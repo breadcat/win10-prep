@@ -18,8 +18,8 @@ reg add "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths\irfanview.exe"
 rem allow irfanview to edit ini file
 icacls "%programfiles%\IrfanView" /grant Everyone:(OI)(CI)F
 rem add mumble short code
-reg add "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths\mumble.exe" /v "Path" /t REG_SZ /d "%ProgramFiles(x86)%\Mumble\\" /f
-reg add "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths\mumble.exe" /ve /t REG_SZ /d "%ProgramFiles(x86)%\Mumble\mumble.exe" /f
+reg add "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths\mumble.exe" /v "Path" /t REG_SZ /d "%programfiles(x86)%\Mumble\\" /f
+reg add "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths\mumble.exe" /ve /t REG_SZ /d "%programfiles(x86)%\Mumble\mumble.exe" /f
 rem putty colour scheme
 reg add "HKCU\Software\SimonTatham\PuTTY\Sessions\Default%%20Settings" /v "Colour0" /t REG_SZ /d "197,200,198" /f
 reg add "HKCU\Software\SimonTatham\PuTTY\Sessions\Default%%20Settings" /v "Colour1" /t REG_SZ /d "197,200,198" /f
@@ -46,8 +46,8 @@ reg add "HKCU\Software\SimonTatham\PuTTY\Sessions\Default%%20Settings" /v "Colou
 rem agree to procmon eula
 reg add "HKCU\SOFTWARE\Sysinternals\Process Monitor" /v "EulaAccepted" /t REG_DWORD /d "1" /f
 rem add steam shortcode
-reg add "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths\steam.exe" /v "Path" /t REG_SZ /d "%ProgramFiles(x86)%\Steam\\" /f
-reg add "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths\steam.exe" /ve /t REG_SZ /d "%ProgramFiles(x86)%\Steam\Steam.exe" /f
+reg add "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths\steam.exe" /v "Path" /t REG_SZ /d "%programfiles(x86)%\Steam\\" /f
+reg add "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths\steam.exe" /ve /t REG_SZ /d "%programfiles(x86)%\Steam\Steam.exe" /f
 rem move syncthing binaries up a directory
 dir /b "%programfiles%\Syncthing" > "syncthing-ver.tmp"
 set /p syncthing-ver=<"syncthing-ver.tmp"
