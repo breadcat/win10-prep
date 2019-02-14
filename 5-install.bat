@@ -1,6 +1,6 @@
 rem install applications
 msiexec /i https://just-install.github.io/stable/just-install.msi
-just-install 7zip autohotkey autoruns firefox github irfanview mumble notepad2-mod parsec putty rclone retroarch rufus steam sumatrapdf syncthing winscp
+just-install 7zip autohotkey autoruns filezilla firefox github irfanview mumble notepad2-mod parsec putty rclone retroarch rufus steam sumatrapdf syncthing winscp
 rem random 7z binary to extract packages
 cd %temp%
 rem add ahk-assistant if it exists
