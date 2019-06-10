@@ -1,32 +1,35 @@
 rem install just-install
 msiexec /i https://just-install.github.io/stable/just-install.msi
-rem install packages, individually for error handling
+rem install packages, individually for better error handling
+rem essentials
 just-install 7zip
 just-install autohotkey
-just-install autoruns
-just-install battlenet
-just-install discord
-just-install epic-games-launcher
-just-install filezilla
 just-install firefox
-just-install github
 just-install irfanview
-just-install kodi
-just-install mumble
 just-install notepad2-mod
-just-install openvpn
-just-install origin
-just-install parsec
 just-install putty
 just-install rclone
-just-install retroarch
-just-install rufus
-just-install steam
-just-install sshfs-win
 just-install sumatrapdf
 just-install syncthing
 just-install winfsp
+rem tools
+just-install autoruns
+just-install filezilla
+just-install github
+just-install kodi
+just-install openvpn
+just-install rufus
+just-install sshfs-win
 just-install winscp
+rem games
+just-install battlenet
+just-install discord
+just-install epic-games-launcher
+just-install origin
+just-install parsec
+just-install retroarch
+just-install steam
+just-install teamspeak
 rem add ahk-assistant if it exists
 if exist %userprofile%\Vault\src\ahka\ahk-assistant.ahk reg add "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Run" /v "AHK Assistant" /t REG_SZ /d "%userprofile%\Vault\src\ahka\ahk-assistant.ahk" /f
 rem install .net3, generally useful
