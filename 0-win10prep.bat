@@ -22,7 +22,7 @@ echo done
 call "2-tweaks.bat" > nul
 echo done
 <NUL set /p=:: Registry Tweaks... 
-call "3-tweaks.bat" > nul
+call "3-registry.bat" > nul
 echo done
 <NUL set /p=:: Removing Programs... 
 call "4-remove.bat" > nul
