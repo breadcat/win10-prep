@@ -47,29 +47,6 @@ icacls "%programfiles%\IrfanView" /grant Everyone:(OI)(CI)F
 rem add mumble short code
 reg add "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths\mumble.exe" /v "Path" /t REG_SZ /d "%programfiles(x86)%\Mumble\\" /f
 reg add "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths\mumble.exe" /ve /t REG_SZ /d "%programfiles(x86)%\Mumble\mumble.exe" /f
-rem putty colour scheme
-reg add "HKCU\Software\SimonTatham\PuTTY\Sessions\Default%%20Settings" /v "Colour0" /t REG_SZ /d "197,200,198" /f
-reg add "HKCU\Software\SimonTatham\PuTTY\Sessions\Default%%20Settings" /v "Colour1" /t REG_SZ /d "197,200,198" /f
-reg add "HKCU\Software\SimonTatham\PuTTY\Sessions\Default%%20Settings" /v "Colour2" /t REG_SZ /d "29,31,33" /f
-reg add "HKCU\Software\SimonTatham\PuTTY\Sessions\Default%%20Settings" /v "Colour3" /t REG_SZ /d "29,31,33" /f
-reg add "HKCU\Software\SimonTatham\PuTTY\Sessions\Default%%20Settings" /v "Colour4" /t REG_SZ /d "29,31,33" /f
-reg add "HKCU\Software\SimonTatham\PuTTY\Sessions\Default%%20Settings" /v "Colour5" /t REG_SZ /d "197,200,198" /f
-reg add "HKCU\Software\SimonTatham\PuTTY\Sessions\Default%%20Settings" /v "Colour6" /t REG_SZ /d "40,42,46" /f
-reg add "HKCU\Software\SimonTatham\PuTTY\Sessions\Default%%20Settings" /v "Colour7" /t REG_SZ /d "55,59,65" /f
-reg add "HKCU\Software\SimonTatham\PuTTY\Sessions\Default%%20Settings" /v "Colour8" /t REG_SZ /d "165,66,66" /f
-reg add "HKCU\Software\SimonTatham\PuTTY\Sessions\Default%%20Settings" /v "Colour9" /t REG_SZ /d "204,102,102" /f
-reg add "HKCU\Software\SimonTatham\PuTTY\Sessions\Default%%20Settings" /v "Colour10" /t REG_SZ /d "140,148,64" /f
-reg add "HKCU\Software\SimonTatham\PuTTY\Sessions\Default%%20Settings" /v "Colour11" /t REG_SZ /d "181,189,104" /f
-reg add "HKCU\Software\SimonTatham\PuTTY\Sessions\Default%%20Settings" /v "Colour12" /t REG_SZ /d "222,147,95" /f
-reg add "HKCU\Software\SimonTatham\PuTTY\Sessions\Default%%20Settings" /v "Colour13" /t REG_SZ /d "240,198,116" /f
-reg add "HKCU\Software\SimonTatham\PuTTY\Sessions\Default%%20Settings" /v "Colour14" /t REG_SZ /d "95,129,157" /f
-reg add "HKCU\Software\SimonTatham\PuTTY\Sessions\Default%%20Settings" /v "Colour15" /t REG_SZ /d "129,162,190" /f
-reg add "HKCU\Software\SimonTatham\PuTTY\Sessions\Default%%20Settings" /v "Colour16" /t REG_SZ /d "133,103,143" /f
-reg add "HKCU\Software\SimonTatham\PuTTY\Sessions\Default%%20Settings" /v "Colour17" /t REG_SZ /d "178,148,187" /f
-reg add "HKCU\Software\SimonTatham\PuTTY\Sessions\Default%%20Settings" /v "Colour18" /t REG_SZ /d "94,141,135" /f
-reg add "HKCU\Software\SimonTatham\PuTTY\Sessions\Default%%20Settings" /v "Colour19" /t REG_SZ /d "138,190,183" /f
-reg add "HKCU\Software\SimonTatham\PuTTY\Sessions\Default%%20Settings" /v "Colour20" /t REG_SZ /d "112,120,128" /f
-reg add "HKCU\Software\SimonTatham\PuTTY\Sessions\Default%%20Settings" /v "Colour21" /t REG_SZ /d "197,200,198" /f
 rem agree to procmon eula
 reg add "HKCU\SOFTWARE\Sysinternals\Process Monitor" /v "EulaAccepted" /t REG_DWORD /d "1" /f
 rem add steam shortcode
