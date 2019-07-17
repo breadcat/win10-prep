@@ -93,9 +93,8 @@ rem install webp codec
 ren %temp%\.rsrc\0\MSIFILE\1 1.msi && msiexec /i %temp%\.rsrc\0\MSIFILE\1.msi /quiet /qn /norestart
 ren %temp%\.rsrc\0\MSIFILE\10 10.msi && msiexec /i %temp%\.rsrc\0\MSIFILE\10.msi /quiet /qn /norestart
 rd /s /q %temp%\.rsrc
-rem mpv download and unpack
-mkdir "%programfiles%\mpv"
-@powershell Invoke-WebRequest https://mpv.srsfckn.biz/mpv-x86_64-20181002.7z -OutFile mpv.7z
-@powershell Invoke-WebRequest https://raw.githubusercontent.com/rossy/mpv-install/master/mpv-document.ico -OutFile mpv-document.ico
-"%programfiles%\7-Zip\7z.exe" x %temp%\mpv.7z -o"%programfiles%\mpv"
-move mpv-document.ico "%programfiles%\mpv\mpv-document.ico"
+rem mpv bootstrapper download and install
+cd "%temp%"
+@powershell Invoke-WebRequest "https://downloads.sourceforge.net/project/mpv-player-windows/bootstrapper.zip" -OutFile "mpv.zip" -UserAgent [Microsoft.PowerShell.Commands.PSUserAgent]::FireFox
+"%programfiles%\7-Zip\7z.exe" x "mpv.zip" -o"%programfiles%\mpv" && del "mpv.zip"
+cd "%programfiles%\mpv" && cmd /k "updater.bat" && cmd /k "installer\mpv-install.bat"
