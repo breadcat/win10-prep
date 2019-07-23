@@ -9,10 +9,19 @@ echo.
 echo     Please review and be aware of what this script does before running it.
 echo     There is no uninstaller, and backups won't be created.
 echo.
-echo     You won't be prompted any further.
-echo     Press [enter] to begin.
-echo.
-set /p=
+rem check permissions
+net session >nul 2>&1
+if %errorLevel% == 0 (
+    echo     You won't be prompted any further.
+    echo     Press [enter] to begin.
+    echo.
+    set /p=
+) else (
+    echo     This script requires administrator rights.
+    echo     Press any key to exit
+    pause >nul
+    exit
+)
 
 rem Process
 <NUL set /p=:: Activating Windows... 
