@@ -15,4 +15,5 @@ powercfg /SETACVALUEINDEX SCHEME_CURRENT SUB_NONE CONSOLELOCK 0
 rem batch file shortcuts
 echo robocopy . . /s /move > %windir%\system32\empties.bat
 echo dir /b > %windir%\system32\ls.bat
+echo del > %windir%\system32\rm.bat
 echo exit > %windir%\system32\x.bat
