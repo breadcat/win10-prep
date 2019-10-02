@@ -1,2 +1,6 @@
-ping -n 1 minskio.co.uk | find "TTL=" >nul 
-if errorlevel 0 ( slmgr/skms minskio.co.uk && slmgr/ato ) else ( echo server did not respond to ping requests)
+rem server address
+set kms_server=minskio.co.uk
+rem windows activation
+slmgr/skms %kms_server% && slmgr/ato
+rem office activation, if it's installed
+if exist "%ProgramFiles(x86)%\Microsoft Office\Office14\OSPP.VBS" cscript "%ProgramFiles(x86)%\Microsoft Office\Office14\OSPP.VBS" /sethst:%kms_server% && cscript "%ProgramFiles(x86)%\Microsoft Office\Office14\OSPP.VBS" /act
