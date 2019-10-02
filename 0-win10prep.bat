@@ -1,6 +1,7 @@
 
 rem intro
 @echo off
+title Windows 10 Prep Script
 pushd "%~dp0"
 cls
 echo.
