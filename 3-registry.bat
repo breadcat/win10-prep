@@ -39,6 +39,7 @@ reg add "HKCU\Software\Classes\.png" /ve /t REG_SZ /d "PhotoViewer.FileAssoc.Tif
 reg add "HKCU\Software\Classes\.tiff" /ve /t REG_SZ /d "PhotoViewer.FileAssoc.Tiff" /f
 rem notepad file associations
 reg add "HKCR\.cfg" /ve /t REG_SZ /d "txtfile" /f
+reg add "HKCR\.conf" /ve /t REG_SZ /d "txtfile" /f
 reg add "HKCR\.cpp" /ve /t REG_SZ /d "txtfile" /f
 reg add "HKCR\.cue" /ve /t REG_SZ /d "txtfile" /f
 reg add "HKCR\.go" /ve /t REG_SZ /d "txtfile" /f
