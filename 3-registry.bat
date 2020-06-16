@@ -38,21 +38,7 @@ reg add "HKCU\Software\Classes\.jpg" /ve /t REG_SZ /d "PhotoViewer.FileAssoc.Tif
 reg add "HKCU\Software\Classes\.png" /ve /t REG_SZ /d "PhotoViewer.FileAssoc.Tiff" /f
 reg add "HKCU\Software\Classes\.tiff" /ve /t REG_SZ /d "PhotoViewer.FileAssoc.Tiff" /f
 rem notepad file associations
-reg add "HKCR\.cfg" /ve /t REG_SZ /d "txtfile" /f
-reg add "HKCR\.conf" /ve /t REG_SZ /d "txtfile" /f
-reg add "HKCR\.cpp" /ve /t REG_SZ /d "txtfile" /f
-reg add "HKCR\.cue" /ve /t REG_SZ /d "txtfile" /f
-reg add "HKCR\.go" /ve /t REG_SZ /d "txtfile" /f
-reg add "HKCR\.json" /ve /t REG_SZ /d "txtfile" /f
-reg add "HKCR\.md" /ve /t REG_SZ /d "txtfile" /f
-reg add "HKCR\.nfo" /ve /t REG_SZ /d "txtfile" /f
-reg add "HKCR\.nfo-orig" /ve /t REG_SZ /d "txtfile" /f
-reg add "HKCR\.patch" /ve /t REG_SZ /d "txtfile" /f
-reg add "HKCR\.php" /ve /t REG_SZ /d "txtfile" /f
-reg add "HKCR\.sh" /ve /t REG_SZ /d "txtfile" /f
-reg add "HKCR\.srt" /ve /t REG_SZ /d "txtfile" /f
-reg add "HKCR\.toml" /ve /t REG_SZ /d "txtfile" /f
-reg add "HKCR\.yml" /ve /t REG_SZ /d "txtfile" /f
+for %%x in (cfg conf cpp cue go json md nfo nfo-orig patch php sh srt toml yml) do reg add "HKCR\.%%x" /ve /t REG_SZ /d "txtfile" /f
 rem disable various services
 reg add "HKLM\SYSTEM\CurrentControlSet\Services\AppMgmt" /v "Start" /t REG_DWORD /d "4" /f
 reg add "HKLM\SYSTEM\CurrentControlSet\Services\CscService" /v "Start" /t REG_DWORD /d "4" /f
