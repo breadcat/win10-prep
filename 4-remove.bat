@@ -22,3 +22,20 @@ reg delete HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstal
 reg delete HKEY_CURRENT_USER\SOFTWARE\AppDataLow\Software\Microsoft\Silverlight /f
 rmdir /s /q "%ProgramFiles%\Microsoft Silverlight"
 rmdir /s /q "%ProgramFiles(x86)%\Microsoft Silverlight"
+rem remove adobe flash
+takeown /f "%windir%\System32\Macromed" /r /d y
+takeown /f "%windir%\System32\Macromed\Flash\*.*"
+takeown /f "%windir%\SysWOW64\FlashPlayerApp.exe" /r /d y
+takeown /f "%windir%\SysWOW64\FlashPlayerCPLApp.cpl" /r /d y
+takeown /f "%windir%\SysWOW64\Macromed" /r /d y
+takeown /f "%windir%\SysWOW64\Macromed\Flash\*.*"
+icacls "%windir%\System32\Macromed" /grant administrators:F /t
+icacls "%windir%\SysWOW64\FlashPlayerApp.exe" /grant administrators:F /t
+icacls "%windir%\SysWOW64\FlashPlayerCPLApp.cpl" /grant administrators:F /t
+icacls "%windir%\SysWOW64\Macromed" /grant administrators:F /t
+rd /s /q "%appdata%\Adobe"
+rd /s /q "%windir%\System32\Macromed"
+rd /s /q "%windir%\SysWOW64\Macromed"
+rd /s /q "%appdata%\Macromedia\Flash Player"
+del "%windir%\SysWOW64\FlashPlayerApp.exe"
+del "%windir%\SysWOW64\FlashPlayerCPLApp.cpl"
