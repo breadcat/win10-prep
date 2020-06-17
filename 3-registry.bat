@@ -33,13 +33,7 @@ reg add "HKCR\Applications\photoviewer.dll\shell\open\command" /ve /t REG_EXPAND
 reg add "HKCR\Applications\photoviewer.dll\shell\open\DropTarget" /v "Clsid" /t REG_SZ /d "{FFE2A43C-56B9-4bf5-9A79-CC6D4285608A}" /f
 reg add "HKCR\Applications\photoviewer.dll\shell\print\command" /ve /t REG_EXPAND_SZ /d "%%SystemRoot%%\System32\rundll32.exe \"%%ProgramFiles%%\Windows Photo Viewer\PhotoViewer.dll\", ImageView_Fullscreen %%1" /f
 reg add "HKCR\Applications\photoviewer.dll\shell\print\DropTarget" /v "Clsid" /t REG_SZ /d "{60fd46de-f830-4894-a628-6fa81bc0190d}" /f
-reg add "HKCU\Software\Classes\.bmp" /ve /t REG_SZ /d "PhotoViewer.FileAssoc.Tiff" /f
-reg add "HKCU\Software\Classes\.gif" /ve /t REG_SZ /d "PhotoViewer.FileAssoc.Tiff" /f
-reg add "HKCU\Software\Classes\.ico" /ve /t REG_SZ /d "PhotoViewer.FileAssoc.Tiff" /f
-reg add "HKCU\Software\Classes\.jpeg" /ve /t REG_SZ /d "PhotoViewer.FileAssoc.Tiff" /f
-reg add "HKCU\Software\Classes\.jpg" /ve /t REG_SZ /d "PhotoViewer.FileAssoc.Tiff" /f
-reg add "HKCU\Software\Classes\.png" /ve /t REG_SZ /d "PhotoViewer.FileAssoc.Tiff" /f
-reg add "HKCU\Software\Classes\.tiff" /ve /t REG_SZ /d "PhotoViewer.FileAssoc.Tiff" /f
+for %%x in (bmp gif ico jpeg jpg png tiff) do reg add "HKCU\Software\Classes\.%%x" /ve /t REG_SZ /d "PhotoViewer.FileAssoc.Tiff" /f
 rem support win32calc if exists
 if exist %windir%\System32\win32calc.exe reg add "HKLM\SOFTWARE\WOW6432Node\Microsoft\Windows NT\CurrentVersion\Image File Execution Options\calc.exe" /v "Debugger" /t REG_SZ /d "\"%SystemRoot%\System32\win32calc.exe\"" /f
 if exist %windir%\System32\win32calc.exe reg add "HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Image File Execution Options\calc.exe" /v "Debugger" /t REG_SZ /d "\"%SystemRoot%\System32\win32calc.exe\"" /f
