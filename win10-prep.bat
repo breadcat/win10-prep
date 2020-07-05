@@ -173,7 +173,7 @@ reg add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced" /v "S
 rem hide search icon in taskbar
 reg add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Search" /v "SearchboxTaskbarMode" /t REG_DWORD /d "0" /f
 rem hide cortana icon in taskbar
-reg add "HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced" /v "ShowCortanaButton" /t REG_DWORD /d "0" /f
+reg add "HKCU\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced" /v "ShowCortanaButton" /t REG_DWORD /d "0" /f
 rem small taskbar icon size
 reg add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced" /v "TaskbarSmallIcons" /t REG_DWORD /d "1" /f
 rem have a stab at disabling telemetry
@@ -216,13 +216,13 @@ reg add "HKLM\SYSTEM\CurrentControlSet\Control\Keyboard Layout" /v "Scancode Map
 rem support redshift experimental builds
 reg add "HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\ICM" /v "GdiIcmGammaRange" /t REG_DWORD /d "256" /f
 rem remove people icon in taskbar
-reg add "HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced\People" /v "PeopleBand" /t REG_DWORD /d "0" /f
+reg add "HKCU\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced\People" /v "PeopleBand" /t REG_DWORD /d "0" /f
 rem remove 3d objects folder
 reg delete "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\MyComputer\NameSpace\{0DB7E03F-FC29-4DC6-9020-FF41B59E513A}" /f
 reg delete "HKLM\SOFTWARE\WOW6432Node\Microsoft\Windows\CurrentVersion\Explorer\MyComputer\NameSpace\{0DB7E03F-FC29-4DC6-9020-FF41B59E513A}" /f
 rem disable win10 game bar
-reg add "HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\GameDVR" /v "AppCaptureEnabled" /t REG_DWORD /d "0" /f
-reg add "HKEY_CURRENT_USER\System\GameConfigStore" /v "GameDVR_Enabled" /t REG_DWORD /d "0" /f
+reg add "HKCU\Software\Microsoft\Windows\CurrentVersion\GameDVR" /v "AppCaptureEnabled" /t REG_DWORD /d "0" /f
+reg add "HKCU\System\GameConfigStore" /v "GameDVR_Enabled" /t REG_DWORD /d "0" /f
 rem enable numlock on boot
 reg add "HKCU\Control Panel\Keyboard" /v "InitialKeyboardIndicators" /t REG_SZ /d "2" /f
 exit /b %errorlevel%
@@ -242,14 +242,14 @@ rem remove internet explorer 11
 dism /online /disable-feature /featurename:Internet-Explorer-Optional-amd64 /NoRestart
 rem remove silverlight (https://support.microsoft.com/en-us/kb/2608523)
 reg delete HKLM\Software\Microsoft\Silverlight /f
-reg delete HKEY_CLASSES_ROOT\Installer\Products\D7314F9862C648A4DB8BE2A5B47BE100 /f
-reg delete HKEY_LOCAL_MACHINE\SOFTWARE\Classes\Installer\Products\D7314F9862C648A4DB8BE2A5B47BE100 /f
-reg delete HKEY_CLASSES_ROOT\TypeLib\{283C8576-0726-4DBC-9609-3F855162009A} /f
-reg delete HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths\install.exe /f
-reg delete HKEY_CLASSES_ROOT\AgControl.AgControl /f
-reg delete HKEY_CLASSES_ROOT\AgControl.AgControl.5.1 /f
-reg delete HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\{89F4137D-6C26-4A84-BDB8-2E5A4BB71E00} /f
-reg delete HKEY_CURRENT_USER\SOFTWARE\AppDataLow\Software\Microsoft\Silverlight /f
+reg delete HKCR\Installer\Products\D7314F9862C648A4DB8BE2A5B47BE100 /f
+reg delete HKLM\SOFTWARE\Classes\Installer\Products\D7314F9862C648A4DB8BE2A5B47BE100 /f
+reg delete HKCR\TypeLib\{283C8576-0726-4DBC-9609-3F855162009A} /f
+reg delete HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths\install.exe /f
+reg delete HKCR\AgControl.AgControl /f
+reg delete HKCR\AgControl.AgControl.5.1 /f
+reg delete HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\{89F4137D-6C26-4A84-BDB8-2E5A4BB71E00} /f
+reg delete HKCU\SOFTWARE\AppDataLow\Software\Microsoft\Silverlight /f
 if exist "%programfiles%\Microsoft Silverlight" rd /s /q "%programfiles%\Microsoft Silverlight"
 if exist "%programfiles(x86)%\Microsoft Silverlight" rd /s /q "%programfiles(x86)%\Microsoft Silverlight"
 rem remove adobe flash
