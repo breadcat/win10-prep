@@ -128,16 +128,16 @@ reg add "HKLM\SOFTWARE\Policies\Microsoft\Windows\Windows Search" /v "PreventRem
 reg add "HKLM\SOFTWARE\Policies\Microsoft\Windows\Windows Search" /v "DisableWebSearch" /t REG_DWORD /d "1" /f
 reg add "HKLM\SOFTWARE\Policies\Microsoft\Windows\Windows Search" /v "ConnectedSearchUseWeb" /t REG_DWORD /d "0" /f
 rem rename computer name from unique gibberish to Username-PC
-reg add "HKLM\SYSTEM\ControlSet001\Services\Tcpip\Parameters" /v "NV Hostname" /t REG_SZ /d "%username%-PC" /f
-reg add "HKLM\SYSTEM\ControlSet001\Services\Tcpip\Parameters" /v "Hostname" /t REG_SZ /d "%username%-PC" /f
-reg add "HKLM\SYSTEM\CurrentControlSet\Services\Tcpip\Parameters" /v "NV Hostname" /t REG_SZ /d "%username%-PC" /f
-reg add "HKLM\SYSTEM\CurrentControlSet\Services\Tcpip\Parameters" /v "Hostname" /t REG_SZ /d "%username%-PC" /f
-reg add "HKLM\SYSTEM\ControlSet001\Control\ComputerName\ComputerName" /v "ComputerName" /t REG_SZ /d "%username%-PC" /f
-reg add "HKLM\SYSTEM\ControlSet001\Control\ComputerName\ActiveComputerName" /v "ComputerName" /t REG_SZ /d "%username%-PC" /f
-reg add "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Reliability" /v "LastComputerName" /t REG_SZ /d "%username%-PC" /f
 reg add "HKCU\Volatile Environment" /v "LOGONSERVER" /t REG_SZ /d "\\%username%-PC" /f
 reg add "HKCU\Volatile Environment" /v "USERDOMAIN" /t REG_SZ /d "%username%-PC" /f
 reg add "HKCU\Volatile Environment" /v "USERDOMAIN_ROAMINGPROFILE" /t REG_SZ /d "%username%-PC" /f
+reg add "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Reliability" /v "LastComputerName" /t REG_SZ /d "%username%-PC" /f
+reg add "HKLM\SYSTEM\ControlSet001\Control\ComputerName\ActiveComputerName" /v "ComputerName" /t REG_SZ /d "%username%-PC" /f
+reg add "HKLM\SYSTEM\ControlSet001\Control\ComputerName\ComputerName" /v "ComputerName" /t REG_SZ /d "%username%-PC" /f
+reg add "HKLM\SYSTEM\ControlSet001\Services\Tcpip\Parameters" /v "Hostname" /t REG_SZ /d "%username%-PC" /f
+reg add "HKLM\SYSTEM\ControlSet001\Services\Tcpip\Parameters" /v "NV Hostname" /t REG_SZ /d "%username%-PC" /f
+reg add "HKLM\SYSTEM\CurrentControlSet\Services\Tcpip\Parameters" /v "Hostname" /t REG_SZ /d "%username%-PC" /f
+reg add "HKLM\SYSTEM\CurrentControlSet\Services\Tcpip\Parameters" /v "NV Hostname" /t REG_SZ /d "%username%-PC" /f
 rem add take ownership to context menu
 reg add "HKCR\*\shell\runas" /v "HasLUAShield" /t REG_SZ /d "" /f
 reg add "HKCR\*\shell\runas" /v "NoWorkingDirectory" /t REG_SZ /d "" /f
