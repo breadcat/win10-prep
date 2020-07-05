@@ -307,7 +307,7 @@ rem add irfanview shortcode
 reg add "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths\irfanview.exe" /v "Path" /t REG_SZ /d "%programfiles%\IrfanView\\" /f
 reg add "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths\irfanview.exe" /ve /t REG_SZ /d "%programfiles%\IrfanView\i_view64.exe" /f
 rem allow irfanview to edit ini file
-icacls "%programfiles%\IrfanView" /grant Everyone:(OI)(CI)F
+if exist "%programfiles%\IrfanView" icacls "%programfiles%\IrfanView" /grant Everyone:(OI)(CI)F
 rem add mumble short code
 reg add "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths\mumble.exe" /v "Path" /t REG_SZ /d "%programfiles(x86)%\Mumble\\" /f
 reg add "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths\mumble.exe" /ve /t REG_SZ /d "%programfiles(x86)%\Mumble\mumble.exe" /f
