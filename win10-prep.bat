@@ -270,6 +270,10 @@ reg add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Search" /v "BingSearchEn
 rem disable location tracking
 reg add "HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Sensor\Overrides\{BFA794E4-F964-4FDB-90F6-51056BFE4B44}" /v "SensorPermissionState" /t REG_DWORD /d "0" /f
 reg add "HKLM\SYSTEM\CurrentControlSet\Services\lfsvc\Service\Configuration" /v "Status" /t REG_DWORD /d "0" /f
+rem disable IE first run popup
+reg add "HKLM\Software\Policies\Microsoft\Internet Explorer\Main" /v "DisableFirstRunCustomize" /t REG_DWORD /d "1" /f
+rem verbose status messages
+reg add "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\policies\system" /v "verbosestatus" /t REG_DWORD /d "1" /f
 exit /b %errorlevel%
 
 :remove_software
