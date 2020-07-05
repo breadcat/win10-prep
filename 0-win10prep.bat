@@ -234,9 +234,9 @@ if exist "%windir%\system32\onedrivesetup.exe" "%windir%\system32\onedrivesetup.
 if exist "%windir%\syswow64\onedrivesetup.exe" "%windir%\syswow64\onedrivesetup.exe" /uninstall
 reg delete "HKCR\CLSID\{018D5C66-4533-4307-9B53-224DE2ED1FE6}" /f
 reg delete "HKCR\Wow6432Node\CLSID\{018D5C66-4533-4307-9B53-224DE2ED1FE6}" /f
-rd /s /q "%userprofile%\OneDrive"
-rd /s /q "%localappdata%\Microsoft\OneDrive"
-rd /s /q "%programdata%\Microsoft OneDrive"
+if exist "%userprofile%\OneDrive" rd /s /q "%userprofile%\OneDrive"
+if exist "%localappdata%\Microsoft\OneDrive" rd /s /q "%localappdata%\Microsoft\OneDrive"
+if exist "%programdata%\Microsoft OneDrive" rd /s /q "%programdata%\Microsoft OneDrive"
 rem remove internet explorer 11
 dism /online /disable-feature /featurename:Internet-Explorer-Optional-amd64 /NoRestart
 rem remove silverlight (https://support.microsoft.com/en-us/kb/2608523)
@@ -249,25 +249,25 @@ reg delete HKEY_CLASSES_ROOT\AgControl.AgControl /f
 reg delete HKEY_CLASSES_ROOT\AgControl.AgControl.5.1 /f
 reg delete HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\{89F4137D-6C26-4A84-BDB8-2E5A4BB71E00} /f
 reg delete HKEY_CURRENT_USER\SOFTWARE\AppDataLow\Software\Microsoft\Silverlight /f
-rmdir /s /q "%ProgramFiles%\Microsoft Silverlight"
-rmdir /s /q "%ProgramFiles(x86)%\Microsoft Silverlight"
+if exist "%programfiles%\Microsoft Silverlight" rd /s /q "%programfiles%\Microsoft Silverlight"
+if exist "%programfiles(x86)%\Microsoft Silverlight" rd /s /q "%programfiles(x86)%\Microsoft Silverlight"
 rem remove adobe flash
-takeown /f "%windir%\System32\Macromed" /r /d y
-takeown /f "%windir%\System32\Macromed\Flash\*.*"
-takeown /f "%windir%\SysWOW64\FlashPlayerApp.exe" /r /d y
-takeown /f "%windir%\SysWOW64\FlashPlayerCPLApp.cpl" /r /d y
-takeown /f "%windir%\SysWOW64\Macromed" /r /d y
-takeown /f "%windir%\SysWOW64\Macromed\Flash\*.*"
-icacls "%windir%\System32\Macromed" /grant administrators:F /t
-icacls "%windir%\SysWOW64\FlashPlayerApp.exe" /grant administrators:F /t
-icacls "%windir%\SysWOW64\FlashPlayerCPLApp.cpl" /grant administrators:F /t
-icacls "%windir%\SysWOW64\Macromed" /grant administrators:F /t
-rd /s /q "%appdata%\Adobe"
-rd /s /q "%windir%\System32\Macromed"
-rd /s /q "%windir%\SysWOW64\Macromed"
-rd /s /q "%appdata%\Macromedia\Flash Player"
-del "%windir%\SysWOW64\FlashPlayerApp.exe"
-del "%windir%\SysWOW64\FlashPlayerCPLApp.cpl"
+if exist "%windir%\System32\Macromed" takeown /f "%windir%\System32\Macromed" /r /d y
+if exist "%windir%\System32\Macromed\Flash\*.*" takeown /f "%windir%\System32\Macromed\Flash\*.*"
+if exist "%windir%\SysWOW64\FlashPlayerApp.exe" takeown /f "%windir%\SysWOW64\FlashPlayerApp.exe" /r /d y
+if exist "%windir%\SysWOW64\FlashPlayerCPLApp.cpl" takeown /f "%windir%\SysWOW64\FlashPlayerCPLApp.cpl" /r /d y
+if exist "%windir%\SysWOW64\Macromed" takeown /f "%windir%\SysWOW64\Macromed" /r /d y
+if exist "%windir%\SysWOW64\Macromed\Flash\*.*" takeown /f "%windir%\SysWOW64\Macromed\Flash\*.*"
+if exist "%windir%\System32\Macromed" icacls "%windir%\System32\Macromed" /grant administrators:F /t
+if exist "%windir%\SysWOW64\FlashPlayerApp.exe" icacls "%windir%\SysWOW64\FlashPlayerApp.exe" /grant administrators:F /t
+if exist "%windir%\SysWOW64\FlashPlayerCPLApp.cpl" icacls "%windir%\SysWOW64\FlashPlayerCPLApp.cpl" /grant administrators:F /t
+if exist "%windir%\SysWOW64\Macromed" icacls "%windir%\SysWOW64\Macromed" /grant administrators:F /t
+if exist "%appdata%\Adobe" rd /s /q "%appdata%\Adobe"
+if exist "%windir%\System32\Macromed" rd /s /q "%windir%\System32\Macromed"
+if exist "%windir%\SysWOW64\Macromed" rd /s /q "%windir%\SysWOW64\Macromed"
+if exist "%appdata%\Macromedia\Flash Player" rd /s /q "%appdata%\Macromedia\Flash Player"
+if exist "%windir%\SysWOW64\FlashPlayerApp.exe" del "%windir%\SysWOW64\FlashPlayerApp.exe"
+if exist "%windir%\SysWOW64\FlashPlayerCPLApp.cpl" del "%windir%\SysWOW64\FlashPlayerCPLApp.cpl"
 exit /b %errorlevel%
 
 :install_software
