@@ -68,6 +68,7 @@ rem don't require signin after wakeup
 powercfg /SETDCVALUEINDEX SCHEME_CURRENT SUB_NONE CONSOLELOCK 0
 powercfg /SETACVALUEINDEX SCHEME_CURRENT SUB_NONE CONSOLELOCK 0
 rem batch file shortcuts
+echo cls> %windir%\system32\clear.bat
 echo robocopy . . /s /move> %windir%\system32\empties.bat
 echo findstr %1> %windir%\system32\grep.bat
 echo dir /b> %windir%\system32\ls.bat
