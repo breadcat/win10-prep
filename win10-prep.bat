@@ -337,10 +337,9 @@ netsh advfirewall firewall add rule name="Syncthing" dir=in action=allow program
 rem install webp codec
 cd "%temp%"
 @powershell Invoke-WebRequest https://storage.googleapis.com/downloads.webmproject.org/releases/webp/WebpCodecSetup.exe -OutFile WebpCodecSetup.exe
-"%programfiles%\7-Zip\7z.exe" x %temp%\WebpCodecSetup.exe
-ren %temp%\.rsrc\0\MSIFILE\1 1.msi && msiexec /i %temp%\.rsrc\0\MSIFILE\1.msi /quiet /qn /norestart
-ren %temp%\.rsrc\0\MSIFILE\10 10.msi && msiexec /i %temp%\.rsrc\0\MSIFILE\10.msi /quiet /qn /norestart
-rd /s /q %temp%\.rsrc
+"%programfiles%\7-Zip\7z.exe" x %temp%\WebpCodecSetup.exe -aoa
+ren %temp%\.rsrc\0\MSIFILE\10 10.msi && msiexec /i %temp%\.rsrc\0\MSIFILE\10.msi /qn /norestart
+rd /s /q ".rsrc" && del ".data" ".rdata" ".reloc" ".text" "CERTIFICATE" "WebpCodecSetup.exe"
 exit /b %errorlevel%
 
 :cleanup
