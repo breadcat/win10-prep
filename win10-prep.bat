@@ -341,11 +341,6 @@ cd "%temp%"
 ren %temp%\.rsrc\0\MSIFILE\1 1.msi && msiexec /i %temp%\.rsrc\0\MSIFILE\1.msi /quiet /qn /norestart
 ren %temp%\.rsrc\0\MSIFILE\10 10.msi && msiexec /i %temp%\.rsrc\0\MSIFILE\10.msi /quiet /qn /norestart
 rd /s /q %temp%\.rsrc
-rem mpv bootstrapper download and install
-cd "%temp%"
-@powershell Invoke-WebRequest "https://downloads.sourceforge.net/project/mpv-player-windows/bootstrapper.zip" -OutFile "mpv.zip" -UserAgent [Microsoft.PowerShell.Commands.PSUserAgent]::FireFox
-"%programfiles%\7-Zip\7z.exe" x "mpv.zip" -o"%programfiles%\mpv" && del "mpv.zip"
-cd "%programfiles%\mpv" && cmd /k "updater.bat" && cmd /k "installer\mpv-install.bat"
 exit /b %errorlevel%
 
 :cleanup
