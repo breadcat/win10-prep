@@ -25,29 +25,20 @@ if %errorLevel% == 0 (
 )
 
 rem Process
-<NUL set /p=:: Activating Windows... 
-call "1-activation.bat" > nul
-echo done
 <NUL set /p=:: System Tweaks... 
-call "2-tweaks.bat" > nul
+call "1-tweaks.bat" > nul
 echo done
 <NUL set /p=:: Registry Tweaks... 
-call "3-registry.bat" > nul
+call "2-registry.bat" > nul
 echo done
 <NUL set /p=:: Removing Programs... 
-call "4-remove.bat" > nul
+call "3-remove.bat" > nul
 echo done
 <NUL set /p=:: Install Programs... 
-call "5-install.bat" > nul
-echo done
-<NUL set /p=:: Mounting Network... 
-call "6-network.bat" > nul
-echo done
-<NUL set /p=:: Windows Updates... 
-call "7-install.bat" > nul
+call "4-install.bat" > nul
 echo done
 <NUL set /p=:: Clean Up... 
-call "8-clean.bat" > nul
+call "5-clean.bat" > nul
 echo done
 
 rem complete
