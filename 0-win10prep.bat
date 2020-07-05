@@ -316,13 +316,13 @@ rem add steam shortcode
 reg add "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths\steam.exe" /v "Path" /t REG_SZ /d "%programfiles(x86)%\Steam\\" /f
 reg add "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths\steam.exe" /ve /t REG_SZ /d "%programfiles(x86)%\Steam\Steam.exe" /f
 rem move syncthing binaries up a directory
-dir /b "%programfiles%\Syncthing" > "syncthing-ver.tmp"
+dir /a:d /b "%programfiles%\Syncthing" > "syncthing-ver.tmp"
 set /p syncthing-ver=<"syncthing-ver.tmp"
 move "%programfiles%\Syncthing\%syncthing-ver%\*" "%programfiles%\Syncthing\"
 rd /s /q "%programfiles%\Syncthing\%syncthing-ver%"
 del "syncthing-ver.tmp"
 rem move rclone binaries (similar to syncthing)
-dir /b "%programfiles%\Rclone" > "rclone-ver.tmp"
+dir /a:d /b "%programfiles%\Rclone" > "rclone-ver.tmp"
 set /p rclone-ver=<"rclone-ver.tmp"
 move "%programfiles%\Rclone\%rclone-ver%\*" "%programfiles%\Rclone\"
 rd /s /q "%programfiles%\Rclone\%rclone-ver%"
