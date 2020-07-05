@@ -114,7 +114,7 @@ rem support win32calc if exists
 if exist %windir%\System32\win32calc.exe reg add "HKLM\SOFTWARE\WOW6432Node\Microsoft\Windows NT\CurrentVersion\Image File Execution Options\calc.exe" /v "Debugger" /t REG_SZ /d "\"%SystemRoot%\System32\win32calc.exe\"" /f
 if exist %windir%\System32\win32calc.exe reg add "HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Image File Execution Options\calc.exe" /v "Debugger" /t REG_SZ /d "\"%SystemRoot%\System32\win32calc.exe\"" /f
 rem notepad file associations
-for %%x in (cfg conf cpp cue go json md nfo nfo-orig patch php sh srt toml yml) do reg add "HKCR\.%%x" /ve /t REG_SZ /d "txtfile" /f
+for %%x in (cfg conf cpp cue go json md nfo nfo-orig patch php ps1 sh srt toml yml) do reg add "HKCR\.%%x" /ve /t REG_SZ /d "txtfile" /f
 rem disable various services
 for %%x in (AppMgmt CscService DiagTrack dmwappushservice DusmSvc HomeGroupListener HomeGroupProvider lfsvc PcaSvc ProtectedStorage RemoteRegistry SCardSvr SCPolicySvc seclogon Spooler WebClient wercplsupport WerSvc WMPNetworkSvc wscsvc WSearch) do reg add "HKLM\SYSTEM\CurrentControlSet\Services\%%x" /v "Start" /t REG_DWORD /d "4" /f
 rem attempt to disable some online search 'features'
