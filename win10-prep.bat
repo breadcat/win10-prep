@@ -279,6 +279,12 @@ rem disable IE first run popup
 reg add "HKLM\Software\Policies\Microsoft\Internet Explorer\Main" /v "DisableFirstRunCustomize" /t REG_DWORD /d "1" /f
 rem verbose status messages
 reg add "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\policies\system" /v "verbosestatus" /t REG_DWORD /d "1" /f
+rem disable live tiles
+reg add "HKCU\SOFTWARE\Policies\Microsoft\Windows\CurrentVersion\PushNotifications" /v "NoTileApplicationNotification" /t REG_DWORD /d "1" /f
+rem remove startup delay
+reg add "HKCU\Software\Microsoft\Windows\CurrentVersion\Explorer\Serialize" /v "Startupdelayinmsec" /t REG_DWORD /d "0" /f
+rem disable backup reminders
+reg add "HKCU\Software\Microsoft\Windows\CurrentVersion\StorageSense\Parameters\BackupReminder" /v "BackupReminderToastCount" /t REG_DWORD /d "3" /f
 exit /b %errorlevel%
 
 :remove_software
