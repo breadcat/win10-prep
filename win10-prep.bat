@@ -78,7 +78,7 @@ exit /b %errorlevel%
 
 :registry_tweaks
 rem disable lock screen
-reg add "HKLM\SOFTWARE\Policies\Microsoft\Windows\Personalization" /v NoLockScreen /t REG_DWORD /d 1 /f
+reg add "HKLM\SOFTWARE\Policies\Microsoft\Windows\Personalization" /v "NoLockScreen" /t REG_DWORD /d "1" /f
 rem maximum mouse speed
 reg add "HKCU\Control Panel\Mouse" /v "MouseSensitivity" /t REG_SZ /d "20" /f
 rem disable hiding of unused tray icons
@@ -310,15 +310,15 @@ if exist "%windir%\SysWOW64\OneDriveSetup.exe" del "%windir%\SysWOW64\OneDriveSe
 rem remove internet explorer 11
 dism /online /disable-feature /featurename:Internet-Explorer-Optional-amd64 /NoRestart
 rem remove silverlight (https://support.microsoft.com/en-us/kb/2608523)
-reg delete HKLM\Software\Microsoft\Silverlight /f
-reg delete HKCR\Installer\Products\D7314F9862C648A4DB8BE2A5B47BE100 /f
-reg delete HKLM\SOFTWARE\Classes\Installer\Products\D7314F9862C648A4DB8BE2A5B47BE100 /f
-reg delete HKCR\TypeLib\{283C8576-0726-4DBC-9609-3F855162009A} /f
-reg delete HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths\install.exe /f
-reg delete HKCR\AgControl.AgControl /f
-reg delete HKCR\AgControl.AgControl.5.1 /f
-reg delete HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\{89F4137D-6C26-4A84-BDB8-2E5A4BB71E00} /f
-reg delete HKCU\SOFTWARE\AppDataLow\Software\Microsoft\Silverlight /f
+reg delete "HKLM\Software\Microsoft\Silverlight" /f
+reg delete "HKCR\Installer\Products\D7314F9862C648A4DB8BE2A5B47BE100" /f
+reg delete "HKLM\SOFTWARE\Classes\Installer\Products\D7314F9862C648A4DB8BE2A5B47BE100" /f
+reg delete "HKCR\TypeLib\{283C8576-0726-4DBC-9609-3F855162009A}" /f
+reg delete "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths\install.exe" /f
+reg delete "HKCR\AgControl.AgControl" /f
+reg delete "HKCR\AgControl.AgControl.5.1" /f
+reg delete "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\{89F4137D-6C26-4A84-BDB8-2E5A4BB71E00}" /f
+reg delete "HKCU\SOFTWARE\AppDataLow\Software\Microsoft\Silverlight" /f
 if exist "%programfiles%\Microsoft Silverlight" rd /s /q "%programfiles%\Microsoft Silverlight"
 if exist "%programfiles(x86)%\Microsoft Silverlight" rd /s /q "%programfiles(x86)%\Microsoft Silverlight"
 rem remove adobe flash
