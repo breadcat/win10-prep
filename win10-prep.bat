@@ -294,9 +294,19 @@ if exist "%windir%\system32\onedrivesetup.exe" "%windir%\system32\onedrivesetup.
 if exist "%windir%\syswow64\onedrivesetup.exe" "%windir%\syswow64\onedrivesetup.exe" /uninstall
 reg delete "HKCR\CLSID\{018D5C66-4533-4307-9B53-224DE2ED1FE6}" /f
 reg delete "HKCR\Wow6432Node\CLSID\{018D5C66-4533-4307-9B53-224DE2ED1FE6}" /f
+reg add "HKLM\SOFTWARE\Policies\Microsoft\Windows\OneDrive" /v "DisableFileSyncNGSC" /t REG_DWORD /d "1" /f
 if exist "%userprofile%\OneDrive" rd /s /q "%userprofile%\OneDrive"
 if exist "%localappdata%\Microsoft\OneDrive" rd /s /q "%localappdata%\Microsoft\OneDrive"
 if exist "%programdata%\Microsoft OneDrive" rd /s /q "%programdata%\Microsoft OneDrive"
+if exist "%windir%\system32\OneDriveSettingSyncProvider.dll" takeown /f "%windir%\system32\OneDriveSettingSyncProvider.dll"
+if exist "%windir%\system32\OneDriveSettingSyncProvider.dll" icacls "%windir%\system32\OneDriveSettingSyncProvider.dll" /grant administrators:f
+if exist "%windir%\system32\OneDriveSettingSyncProvider.dll" del "%windir%\system32\OneDriveSettingSyncProvider.dll"
+if exist "%windir%\SysWOW64\OneDriveSettingSyncProvider.dll" takeown /f "%windir%\SysWOW64\OneDriveSettingSyncProvider.dll"
+if exist "%windir%\SysWOW64\OneDriveSettingSyncProvider.dll" icacls "%windir%\SysWOW64\OneDriveSettingSyncProvider.dll" /grant administrators:f
+if exist "%windir%\SysWOW64\OneDriveSettingSyncProvider.dll" del "%windir%\SysWOW64\OneDriveSettingSyncProvider.dll"
+if exist "%windir%\SysWOW64\OneDriveSetup.exe" takeown /f "%windir%\SysWOW64\OneDriveSetup.exe"
+if exist "%windir%\SysWOW64\OneDriveSetup.exe" icacls "%windir%\SysWOW64\OneDriveSetup.exe" /grant administrators:f
+if exist "%windir%\SysWOW64\OneDriveSetup.exe" del "%windir%\SysWOW64\OneDriveSetup.exe"
 rem remove internet explorer 11
 dism /online /disable-feature /featurename:Internet-Explorer-Optional-amd64 /NoRestart
 rem remove silverlight (https://support.microsoft.com/en-us/kb/2608523)
