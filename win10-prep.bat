@@ -375,10 +375,9 @@ just-install steam
 just-install teamspeak
 rem add ahk-assistant if it exists
 if exist %userprofile%\Vault\src\ahka\ahk-assistant.ahk reg add "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Run" /v "AHK Assistant" /t REG_SZ /d "%userprofile%\Vault\src\ahka\ahk-assistant.ahk" /f
-rem install .net3, generally useful
-DISM /Online /Enable-Feature /FeatureName:NetFx3 /All /NoRestart
-rem install directplay, useful for old GTA games
-dism /Online /enable-feature /FeatureName:"DirectPlay" /All /NoRestart
+rem install .net3 and directplay using dism
+dism /online /enable-feature /featurename:"NetFx3" /all /norestart /quiet
+dism /online /enable-feature /featurename:"DirectPlay" /all /norestart /quiet
 rem 7zip associations and use windows icon
 reg add "HKCU\SOFTWARE\Classes\Applications\7zFM.exe\shell\open\command" /ve /t REG_SZ /d "\"%programfiles%\7-Zip\7zFM.exe\" \"%%1\"" /f
 reg add "HKCR\7z_auto_file\DefaultIcon" /ve /t REG_EXPAND_SZ /d "%%SystemRoot%%\system32\zipfldr.dll" /f
