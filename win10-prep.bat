@@ -284,6 +284,16 @@ rem remove startup delay
 reg add "HKCU\Software\Microsoft\Windows\CurrentVersion\Explorer\Serialize" /v "Startupdelayinmsec" /t REG_DWORD /d "0" /f
 rem disable backup reminders
 reg add "HKCU\Software\Microsoft\Windows\CurrentVersion\StorageSense\Parameters\BackupReminder" /v "BackupReminderToastCount" /t REG_DWORD /d "3" /f
+rem disable confirmation on file deletion
+reg add "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\Explorer" /v "ConfirmFileDelete" /t REG_DWORD /d "0" /f
+rem add open file location to shortcut context menu
+reg add "HKCR\.symlink\shellex\ContextMenuHandlers\OpenContainingFolderMenu" /ve /t REG_SZ /d "{37ea3a21-7493-4208-a011-7f9ea79ce9f5}" /f
+reg add "HKCR\LibraryLocation\ShellEx\ContextMenuHandlers\OpenContainingFolderMenu" /ve /t REG_SZ /d "{37ea3a21-7493-4208-a011-7f9ea79ce9f5}" /f
+reg add "HKCR\lnkfile\shellex\ContextMenuHandlers\OpenContainingFolderMenu" /ve /t REG_SZ /d "{37ea3a21-7493-4208-a011-7f9ea79ce9f5}" /f
+reg add "HKCR\RecentDocument\ShellEx\ContextMenuHandlers\OpenContainingFolderMenu" /ve /t REG_SZ /d "{37ea3a21-7493-4208-a011-7f9ea79ce9f5}" /f
+reg add "HKCR\Results\ShellEx\ContextMenuHandlers\OpenContainingFolderMenu" /ve /t REG_SZ /d "{37ea3a21-7493-4208-a011-7f9ea79ce9f5}" /f
+rem show status bar in explorer
+reg add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced" /v "ShowStatusBar" /t REG_DWORD /d "1" /f
 exit /b %errorlevel%
 
 :remove_software
