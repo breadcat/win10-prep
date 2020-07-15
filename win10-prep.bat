@@ -317,8 +317,8 @@ if exist "%windir%\SysWOW64\OneDriveSettingSyncProvider.dll" del "%windir%\SysWO
 if exist "%windir%\SysWOW64\OneDriveSetup.exe" takeown /f "%windir%\SysWOW64\OneDriveSetup.exe"
 if exist "%windir%\SysWOW64\OneDriveSetup.exe" icacls "%windir%\SysWOW64\OneDriveSetup.exe" /grant administrators:f
 if exist "%windir%\SysWOW64\OneDriveSetup.exe" del "%windir%\SysWOW64\OneDriveSetup.exe"
-rem remove internet explorer 11
-dism /online /disable-feature /featurename:Internet-Explorer-Optional-amd64 /NoRestart
+rem disable some features using dism
+for %%x in (Printing-XPSServices-Features WorkFolders-Client Internet-Explorer-Optional-amd64) do dism /online /disable-feature /featurename:"%%x" /quiet /norestart
 rem remove silverlight (https://support.microsoft.com/en-us/kb/2608523)
 reg delete "HKLM\Software\Microsoft\Silverlight" /f
 reg delete "HKCR\Installer\Products\D7314F9862C648A4DB8BE2A5B47BE100" /f
@@ -375,9 +375,8 @@ just-install steam
 just-install teamspeak
 rem add ahk-assistant if it exists
 if exist %userprofile%\Vault\src\ahka\ahk-assistant.ahk reg add "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Run" /v "AHK Assistant" /t REG_SZ /d "%userprofile%\Vault\src\ahka\ahk-assistant.ahk" /f
-rem install .net3 and directplay using dism
-dism /online /enable-feature /featurename:"NetFx3" /all /norestart /quiet
-dism /online /enable-feature /featurename:"DirectPlay" /all /norestart /quiet
+rem install a few features using dism
+for %%x in (DirectPlay MediaPlayback NetFx3) do dism /online /enable-feature /featurename:"%%x" /quiet /norestart
 rem 7zip associations and use windows icon
 reg add "HKCU\SOFTWARE\Classes\Applications\7zFM.exe\shell\open\command" /ve /t REG_SZ /d "\"%programfiles%\7-Zip\7zFM.exe\" \"%%1\"" /f
 reg add "HKCR\7z_auto_file\DefaultIcon" /ve /t REG_EXPAND_SZ /d "%%SystemRoot%%\system32\zipfldr.dll" /f
