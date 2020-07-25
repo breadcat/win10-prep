@@ -294,6 +294,17 @@ reg add "HKCR\RecentDocument\ShellEx\ContextMenuHandlers\OpenContainingFolderMen
 reg add "HKCR\Results\ShellEx\ContextMenuHandlers\OpenContainingFolderMenu" /ve /t REG_SZ /d "{37ea3a21-7493-4208-a011-7f9ea79ce9f5}" /f
 rem show status bar in explorer
 reg add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced" /v "ShowStatusBar" /t REG_DWORD /d "1" /f
+rem disable consumer experience
+reg add "HKLM\Software\Policies\Microsoft\Windows\CloudContent" /v "DisableWindowsConsumerFeatures" /t REG_DWORD /d "1" /f
+rem block automatic install of suggested apps
+reg add "HKCU\Software\Microsoft\Windows\CurrentVersion\ContentDeliveryManager" /v "SilentInstalledAppsEnabled" /t REG_DWORD /d "0" /f
+rem change windows feedback frequency
+reg add HKCU\SOFTWARE\Microsoft\Siuf\Rules /v NumberOfSIUFInPeriod /t REG_DWORD /d 0 /f
+reg add HKCU\SOFTWARE\Microsoft\Siuf\Rules /v PeriodInNanoSeconds /t REG_DWORD /d 0 /f
+rem disable improve typing/inking recognition
+reg add "HKCU\SOFTWARE\Microsoft\Input\TIPC" /v "Enabled" /t REG_DWORD /d 0 /f
+rem allow long character paths
+reg add "HKLM\SYSTEM\CurrentControlSet\Control\FileSystem" /v "LongPathsEnabled" /t REG_DWORD /d "1" /f
 exit /b %errorlevel%
 
 :remove_software
