@@ -381,6 +381,7 @@ just-install youtube-dl
 rem tools
 just-install github
 rem games
+just-install gog-galaxy
 just-install retroarch
 just-install steam
 just-install teamspeak
