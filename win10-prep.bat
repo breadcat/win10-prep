@@ -67,6 +67,9 @@ w32tm /resync /nowait
 rem don't require signin after wakeup
 powercfg /SETDCVALUEINDEX SCHEME_CURRENT SUB_NONE CONSOLELOCK 0
 powercfg /SETACVALUEINDEX SCHEME_CURRENT SUB_NONE CONSOLELOCK 0
+rem disable 8.3 names on root and strip existing values
+fsutil 8dot3name set %systemdrive% 1
+fsutil 8dot3name strip /s /v %systemdrive%
 exit /b %errorlevel%
 
 :registry_tweaks
