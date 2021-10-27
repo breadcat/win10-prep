@@ -309,10 +309,6 @@ rem disable drive autoruns
 reg add "HKCU\Software\Microsoft\Windows\CurrentVersion\Policies\Explorer" /v "NoDriveTypeAutoRun" /t REG_DWORD /d "181" /f
 reg add "HKCU\Software\Microsoft\Windows\CurrentVersion\Policies\Explorer" /v "NoAutorun" /t REG_DWORD /d "1" /f
 reg add "HKCU\Software\Microsoft\Windows\CurrentVersion\Explorer\AutoplayHandlers" /v "DisableAutoplay" /t REG_DWORD /d "1" /f
-rem disable powershell
-reg add "HKCU\Software\Microsoft\Windows\CurrentVersion\Policies\Explorer" /v "DisallowRun" /t REG_DWORD /d "1" /f
-reg add "HKCU\Software\Microsoft\Windows\CurrentVersion\Policies\Explorer\DisallowRun" /v "1" /t REG_SZ /d "powershell.exe" /f
-reg add "HKCU\Software\Microsoft\Windows\CurrentVersion\Policies\Explorer\DisallowRun" /v "2" /t REG_SZ /d "powershell_ise.exe" /f
 exit /b %errorlevel%
 
 :remove_software
@@ -370,29 +366,31 @@ if exist "%windir%\SysWOW64\FlashPlayerCPLApp.cpl" del "%windir%\SysWOW64\FlashP
 exit /b %errorlevel%
 
 :install_software
-rem install just-install
-msiexec /i https://just-install.github.io/stable/just-install.msi
-rem install packages, individually for better error handling
+rem install chocolatey
+@powershell Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1'))
+rem install packages
 rem essentials
-just-install 7zip
-just-install autohotkey
-just-install ffmpeg
-just-install firefox
-just-install notepad2-mod
-just-install putty
-just-install rclone
-just-install rclone-browser
-just-install sumatrapdf
-just-install syncthing
-just-install winfsp
-just-install youtube-dl
-rem tools
-just-install github
+choco install 7zip
+choco install autohotkey
+choco install ffmpeg
+choco install firefox
+choco install github-desktop
+choco install mpv
+choco install nomacs
+choco install notepad2-mod
+choco install paint.net
+choco install putty
+choco install rclone
+choco install rclonebrowser
+choco install sumatrapdf
+choco install syncthing
+choco install webp
+choco install winfsp
+choco install yt-dlp
 rem games
-just-install gog-galaxy
-just-install retroarch
-just-install steam
-just-install teamspeak
+choco install discord
+choco install retroarch
+choco install steam-client
 rem add ahk-assistant if it exists
 if exist %userprofile%\Vault\src\ahka\ahk-assistant.ahk reg add "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Run" /v "AHK Assistant" /t REG_SZ /d "%userprofile%\Vault\src\ahka\ahk-assistant.ahk" /f
 rem install a few features using dism
@@ -400,11 +398,6 @@ for %%x in (DirectPlay MediaPlayback NetFx3) do dism /online /enable-feature /fe
 rem 7zip associations and use windows icon
 reg add "HKCU\SOFTWARE\Classes\Applications\7zFM.exe\shell\open\command" /ve /t REG_SZ /d "\"%programfiles%\7-Zip\7zFM.exe\" \"%%1\"" /f
 reg add "HKCR\7z_auto_file\DefaultIcon" /ve /t REG_EXPAND_SZ /d "%%SystemRoot%%\system32\zipfldr.dll" /f
-rem add irfanview shortcode
-reg add "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths\irfanview.exe" /v "Path" /t REG_SZ /d "%programfiles%\IrfanView\\" /f
-reg add "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths\irfanview.exe" /ve /t REG_SZ /d "%programfiles%\IrfanView\i_view64.exe" /f
-rem allow irfanview to edit ini file
-if exist "%programfiles%\IrfanView" icacls "%programfiles%\IrfanView" /grant Everyone:(OI)(CI)F
 rem add mumble short code
 reg add "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths\mumble.exe" /v "Path" /t REG_SZ /d "%programfiles(x86)%\Mumble\\" /f
 reg add "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths\mumble.exe" /ve /t REG_SZ /d "%programfiles(x86)%\Mumble\mumble.exe" /f
@@ -431,12 +424,6 @@ rem add syncthing autostart entry
 reg add "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Run" /v "Syncthing" /t REG_SZ /d "\"%programfiles%\Syncthing\syncthing.exe\" -no-console -no-browser" /f
 rem add syncthing firewall rule
 netsh advfirewall firewall add rule name="Syncthing" dir=in action=allow program="%programfiles%\Syncthing\syncthing.exe" enable=yes
-rem install webp codec
-cd "%temp%"
-@powershell Invoke-WebRequest https://storage.googleapis.com/downloads.webmproject.org/releases/webp/WebpCodecSetup.exe -OutFile WebpCodecSetup.exe
-"%programfiles%\7-Zip\7z.exe" x %temp%\WebpCodecSetup.exe -aoa
-ren %temp%\.rsrc\0\MSIFILE\10 10.msi && msiexec /i %temp%\.rsrc\0\MSIFILE\10.msi /qn /norestart
-rd /s /q ".rsrc" && del ".data" ".rdata" ".reloc" ".text" "CERTIFICATE" "WebpCodecSetup.exe"
 exit /b %errorlevel%
 
 :cleanup
