@@ -368,23 +368,23 @@ exit /b %errorlevel%
 :install_software
 rem install chocolatey
 @powershell Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1'))
-rem install packages
-rem essentials
+choco feature enable -n allowGlobalConfirmation
+rem install essential packages
 choco install 7zip
 choco install autohotkey
 choco install ffmpeg
-choco install firefox
 choco install github-desktop
+choco install librewolf
 choco install mpv
 choco install nomacs
-choco install notepad2-mod
+choco install notepadplusplus
 choco install paint.net
 choco install putty
 choco install rclone
 choco install rclonebrowser
+choco install scansnapmanager
 choco install sumatrapdf
 choco install syncthing
-choco install webp
 choco install winfsp
 choco install yt-dlp
 rem games
@@ -424,6 +424,8 @@ rem add syncthing autostart entry
 reg add "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Run" /v "Syncthing" /t REG_SZ /d "\"%programfiles%\Syncthing\syncthing.exe\" -no-console -no-browser" /f
 rem add syncthing firewall rule
 netsh advfirewall firewall add rule name="Syncthing" dir=in action=allow program="%programfiles%\Syncthing\syncthing.exe" enable=yes
+rem replace notepad calls with notepad++
+reg add "HKLM\Software\Microsoft\Windows NT\CurrentVersion\Image File Execution Options\notepad.exe" /v "Debugger" /t REG_SZ /d "\"%ProgramFiles%\Notepad++\notepad++.exe\" -notepadStyleCmdline -z" /f
 exit /b %errorlevel%
 
 :cleanup
