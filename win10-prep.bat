@@ -380,7 +380,7 @@ choco install github-desktop
 choco install librewolf
 choco install mpv
 choco install nomacs
-choco install notepadplusplus
+choco install notepad2-mod
 choco install paint.net
 choco install putty
 choco install rclone
@@ -427,8 +427,6 @@ rem add syncthing autostart entry
 reg add "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Run" /v "Syncthing" /t REG_SZ /d "\"%programfiles%\Syncthing\syncthing.exe\" -no-console -no-browser" /f
 rem add syncthing firewall rule
 netsh advfirewall firewall add rule name="Syncthing" dir=in action=allow program="%programfiles%\Syncthing\syncthing.exe" enable=yes
-rem replace notepad calls with notepad++
-reg add "HKLM\Software\Microsoft\Windows NT\CurrentVersion\Image File Execution Options\notepad.exe" /v "Debugger" /t REG_SZ /d "\"%ProgramFiles%\Notepad++\notepad++.exe\" -notepadStyleCmdline -z" /f
 exit /b %errorlevel%
 
 :cleanup
