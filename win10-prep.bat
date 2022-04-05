@@ -376,8 +376,8 @@ rem install essential packages
 choco install 7zip
 choco install autohotkey
 choco install ffmpeg
+choco install firefox
 choco install github-desktop
-choco install librewolf
 choco install mpv
 choco install nomacs
 choco install notepad2-mod
