@@ -427,6 +427,9 @@ rem add syncthing autostart entry
 reg add "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Run" /v "Syncthing" /t REG_SZ /d "\"%programfiles%\Syncthing\syncthing.exe\" -no-console -no-browser" /f
 rem add syncthing firewall rule
 netsh advfirewall firewall add rule name="Syncthing" dir=in action=allow program="%programfiles%\Syncthing\syncthing.exe" enable=yes
+rem show hidden files in winscp
+reg add "HKCU\Software\Martin Prikryl\WinSCP 2\Configuration\Interface" /v "DimmHiddenFiles" /t REG_DWORD /d "0" /f
+reg add "HKCU\Software\Martin Prikryl\WinSCP 2\Configuration\Interface" /v "ShowHiddenFiles" /t REG_DWORD /d "1" /f
 exit /b %errorlevel%
 
 :cleanup
